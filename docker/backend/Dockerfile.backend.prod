@@ -1,0 +1,48 @@
+# Bingo Sorpresa — backend PHP (producción). Sin xdebug, sin display_errors,
+# composer --no-dev. Sin el remap de www-data a uid 1000: aquí no hay bind-mounts del host
+# (solo el volumen bingo_uploads_prod).
+FROM php:8.2-apache
+
+WORKDIR /var/www/html
+
+# Deps de sistema + extensiones PHP. GD con JPEG/PNG/WebP/GIF/FreeType para el reencodado de fotos
+# (ImageProcessor) y exif para respetar la orientación de las fotos de móvil. pdo_mysql imprescindible.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libzip-dev zip unzip \
+        libpng-dev libjpeg62-turbo-dev libwebp-dev libfreetype6-dev \
+        libonig-dev \
+        git \
+    && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip gd mbstring exif \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Apache: rewrite/headers + servir desde public/
+RUN a2enmod rewrite headers \
+    && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
+    && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
+
+# Código de la app + dependencias de producción
+COPY backend/ /var/www/html/
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+# Directorios de storage
+RUN mkdir -p storage/logs storage/sessions storage/uploads \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage/
+
+# PHP producción. post_max_size > upload_max_filesize: con la sobrecarga del multipart, un fichero
+# de justo 10 MB no cabría en 10M. El límite real de 10 MB lo valida ImageProcessor.
+RUN { \
+        echo "display_errors = Off"; \
+        echo "log_errors = On"; \
+        echo "error_log = /var/www/html/storage/logs/php_errors.log"; \
+        echo "memory_limit = 256M"; \
+        echo "upload_max_filesize = 10M"; \
+        echo "post_max_size = 12M"; \
+    } > /usr/local/etc/php/conf.d/bingo-prod.ini
+
+EXPOSE 80
+CMD ["apache2-foreground"]

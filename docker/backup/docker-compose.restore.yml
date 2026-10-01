@@ -1,0 +1,27 @@
+# Stack DESECHABLE para probar la restauración de un backup (lo usa restore.sh).
+#   docker compose -p bingo_restore_test -f docker/backup/docker-compose.restore.yml …
+# Sin puertos al host, sin container_name y sin la red bingo_prod: no choca con dev ni con prod.
+# La contraseña de root la genera restore.sh en cada ejecución (BINGO_RESTORE_DB_PASSWORD); no es un
+# secreto de nada real. Se derriba con `down -v`.
+services:
+  mysql:
+    image: mysql:8.0
+    command:
+      - --performance-schema=OFF
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BINGO_RESTORE_DB_PASSWORD:-}   # la pone restore.sh
+      MYSQL_DATABASE: ${BINGO_DB_NAME:-bingo_db}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # Contenedor mínimo que monta el volumen de fotos restaurado (extraer el tar y calcular sha256).
+  files:
+    image: alpine:latest
+    command: ["sleep", "infinity"]
+    network_mode: none
+    volumes:
+      - uploads:/data
+
+volumes:
+  mysql_data:
+  uploads:

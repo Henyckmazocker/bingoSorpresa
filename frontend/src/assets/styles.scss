@@ -1,0 +1,107 @@
+/* Estilos globales. Tema oscuro, pensado para pantalla grande (TV) y navegación con D-pad. */
+
+:root {
+  --bg: #0b0b1a;
+  --bg-2: #14142b;
+  --panel: #1c1c3a;
+  --ink: #f5f5ff;
+  --ink-dim: #a7a7c4;
+  --accent: #ff4d6d;      /* rosa/fiesta */
+  --accent-2: #ffd23f;    /* dorado */
+  --music: #7b5cff;       /* morado bingo musical */
+  --image: #37d39b;       /* verde recuerdos */
+  --focus: #ffffff;
+  --radius: 18px;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: radial-gradient(circle at 50% 0%, var(--bg-2), var(--bg) 70%);
+  color: var(--ink);
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; /* la tele no hace scroll */
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  color: var(--ink);
+}
+
+/* Foco bien visible para navegar con el mando (D-pad). */
+:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Botón grande estilo TV. */
+.btn {
+  font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  padding: 0.7em 1.4em;
+  border-radius: var(--radius);
+  background: var(--panel);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--shadow);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #221100;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* Páginas de la web (portada, privacidad, construir): el body no hace scroll (la tele), así que
+   cada página trae el suyo. Mismo panel que el resto de la UI, sobre el RetroBackground. */
+.page {
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(16px, 4vw, 48px) 16px;
+}
+
+.page__panel {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: clamp(1.2rem, 3.5vw, 2.6rem);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.page__back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--accent-2);
+  font-weight: 700;
+}

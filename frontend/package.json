@@ -1,0 +1,36 @@
+{
+  "name": "bingosorpresa-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "cross-env VUE_APP_MODE=web vue-cli-service build",
+    "build:mobile": "cross-env VUE_APP_MODE=mobile VUE_APP_API_ORIGIN=https://bingo.dcahomelab.com vue-cli-service build && npx cap sync android",
+    "cap:sync": "npx cap sync",
+    "cap:android": "npx cap open android",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.1.0",
+    "core-js": "^3.38.0",
+    "pinia": "^2.2.0",
+    "qrcode": "^1.5.4",
+    "vue": "^3.5.0",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/cli": "^6.1.0",
+    "@vue/cli-service": "~5.0.8",
+    "cross-env": "^7.0.3",
+    "sass": "^1.77.0",
+    "sass-loader": "^14.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -1,0 +1,23 @@
+.env
+# frontend/.env sí va al repo: Dockerfile.frontend.prod hace `COPY .env` y sin él un clon limpio no
+# construye. Solo lleva VUE_APP_* (acaban en el bundle público): nunca secretos aquí.
+!frontend/.env
+backend/vendor/
+backend/storage/uploads/*
+!backend/storage/uploads/.gitkeep
+backend/storage/logs/*
+!backend/storage/logs/.gitkeep
+backend/storage/sessions/
+backend/.phpunit.cache/
+backend/var/
+
+# Firma de la APK: keystore y sus contraseñas. NUNCA al repo (quien los tenga puede publicar
+# actualizaciones de la app instalada). Guárdalos aparte, fuera de git.
+signing/
+*.jks
+*.keystore
+
+# Editores y sistema
+.idea/
+.vscode/
+.DS_Store

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+# android/ SÍ se versiona: lleva código propio (MainActivity.java). Lo generado lo ignora
+# su propio android/.gitignore (build/, .gradle/, assets/public, capacitor.config.json…).
+.DS_Store
+*.log
+.env.local

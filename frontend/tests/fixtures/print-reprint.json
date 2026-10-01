@@ -1,0 +1,1217 @@
+{
+ "_comment": "Capturado de dev (M4, 2026-10-01): bingo de números + 25 fotos 4×5. printedPayload = get_play_payload al imprimir la tirada #1 (semilla cumple-2026, 8 jugadores); printSnapshotAfterDelete = get_print {print_id:1} tras delete_item de la 3.ª foto; currentPayload = get_play_payload después del borrado. Firmas sustituidas por FIRMA.",
+ "seed": "cumple-2026",
+ "players": 8,
+ "printedPayload": {
+  "id": "1",
+  "title": "Prueba M4",
+  "modes": {
+   "numeric": {
+    "enabled": true,
+    "label": "Bingo"
+   },
+   "music": {
+    "enabled": false,
+    "label": "Bingo Musical",
+    "card": [
+     3,
+     3
+    ],
+    "items": []
+   },
+   "image": {
+    "enabled": true,
+    "label": "Bingo de Fotos",
+    "card": [
+     4,
+     5
+    ],
+    "items": [
+     {
+      "id": "i1",
+      "kind": "image",
+      "label": "f1",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 1,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i2",
+      "kind": "image",
+      "label": "f2",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 2,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i3",
+      "kind": "image",
+      "label": "f3",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 3,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i4",
+      "kind": "image",
+      "label": "f4",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 4,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i5",
+      "kind": "image",
+      "label": "f5",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 5,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i6",
+      "kind": "image",
+      "label": "f6",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 6,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i7",
+      "kind": "image",
+      "label": "f7",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 7,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i8",
+      "kind": "image",
+      "label": "f8",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 8,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i9",
+      "kind": "image",
+      "label": "f9",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 9,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i10",
+      "kind": "image",
+      "label": "f10",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 10,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i11",
+      "kind": "image",
+      "label": "f11",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 11,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i12",
+      "kind": "image",
+      "label": "f12",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 12,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i13",
+      "kind": "image",
+      "label": "f13",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 13,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i14",
+      "kind": "image",
+      "label": "f14",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 14,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i15",
+      "kind": "image",
+      "label": "f15",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 15,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i16",
+      "kind": "image",
+      "label": "f16",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 16,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i17",
+      "kind": "image",
+      "label": "f17",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 17,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i18",
+      "kind": "image",
+      "label": "f18",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 18,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i19",
+      "kind": "image",
+      "label": "f19",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 19,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i20",
+      "kind": "image",
+      "label": "f20",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 20,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i21",
+      "kind": "image",
+      "label": "f21",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 21,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i22",
+      "kind": "image",
+      "label": "f22",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 22,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i23",
+      "kind": "image",
+      "label": "f23",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 23,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i24",
+      "kind": "image",
+      "label": "f24",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 24,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i25",
+      "kind": "image",
+      "label": "f25",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 25,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     }
+    ]
+   }
+  },
+  "plan": {
+   "leadIn": 15,
+   "minGap": 4,
+   "spreadOver": 55
+  }
+ },
+ "printSnapshotAfterDelete": {
+  "id": "1",
+  "plan": {
+   "leadIn": 15,
+   "minGap": 4,
+   "spreadOver": 55
+  },
+  "modes": {
+   "image": {
+    "card": [
+     4,
+     5
+    ],
+    "items": [
+     {
+      "id": "i1",
+      "kind": "image",
+      "label": "f1",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 1,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i2",
+      "kind": "image",
+      "label": "f2",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 2,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i3",
+      "kind": "image",
+      "label": "f3",
+      "media": {
+       "url": null,
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": null,
+       "uploadId": 3,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i4",
+      "kind": "image",
+      "label": "f4",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 4,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i5",
+      "kind": "image",
+      "label": "f5",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 5,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i6",
+      "kind": "image",
+      "label": "f6",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 6,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i7",
+      "kind": "image",
+      "label": "f7",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 7,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i8",
+      "kind": "image",
+      "label": "f8",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 8,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i9",
+      "kind": "image",
+      "label": "f9",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 9,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i10",
+      "kind": "image",
+      "label": "f10",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 10,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i11",
+      "kind": "image",
+      "label": "f11",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 11,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i12",
+      "kind": "image",
+      "label": "f12",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 12,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i13",
+      "kind": "image",
+      "label": "f13",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 13,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i14",
+      "kind": "image",
+      "label": "f14",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 14,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i15",
+      "kind": "image",
+      "label": "f15",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 15,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i16",
+      "kind": "image",
+      "label": "f16",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 16,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i17",
+      "kind": "image",
+      "label": "f17",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 17,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i18",
+      "kind": "image",
+      "label": "f18",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 18,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i19",
+      "kind": "image",
+      "label": "f19",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 19,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i20",
+      "kind": "image",
+      "label": "f20",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 20,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i21",
+      "kind": "image",
+      "label": "f21",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 21,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i22",
+      "kind": "image",
+      "label": "f22",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 22,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i23",
+      "kind": "image",
+      "label": "f23",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 23,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i24",
+      "kind": "image",
+      "label": "f24",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 24,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     },
+     {
+      "id": "i25",
+      "kind": "image",
+      "label": "f25",
+      "media": {
+       "url": "/img.php?t=FIRMA",
+       "type": "image",
+       "videoId": null,
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 25,
+       "endSeconds": null,
+       "startSeconds": null
+      },
+      "sublabel": null
+     }
+    ],
+    "label": "Bingo de Fotos",
+    "enabled": true
+   },
+   "music": {
+    "card": [
+     3,
+     3
+    ],
+    "items": [],
+    "label": "Bingo Musical",
+    "enabled": false
+   },
+   "numeric": {
+    "label": "Bingo",
+    "enabled": true
+   }
+  },
+  "title": "Prueba M4"
+ },
+ "currentPayload": {
+  "id": "1",
+  "title": "Prueba M4",
+  "modes": {
+   "numeric": {
+    "enabled": true,
+    "label": "Bingo"
+   },
+   "music": {
+    "enabled": false,
+    "label": "Bingo Musical",
+    "card": [
+     3,
+     3
+    ],
+    "items": []
+   },
+   "image": {
+    "enabled": true,
+    "label": "Bingo de Fotos",
+    "card": [
+     4,
+     5
+    ],
+    "items": [
+     {
+      "id": "i1",
+      "kind": "image",
+      "label": "f1",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 1,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i2",
+      "kind": "image",
+      "label": "f2",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 2,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i4",
+      "kind": "image",
+      "label": "f4",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 4,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i5",
+      "kind": "image",
+      "label": "f5",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 5,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i6",
+      "kind": "image",
+      "label": "f6",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 6,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i7",
+      "kind": "image",
+      "label": "f7",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 7,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i8",
+      "kind": "image",
+      "label": "f8",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 8,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i9",
+      "kind": "image",
+      "label": "f9",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 9,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i10",
+      "kind": "image",
+      "label": "f10",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 10,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i11",
+      "kind": "image",
+      "label": "f11",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 11,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i12",
+      "kind": "image",
+      "label": "f12",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 12,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i13",
+      "kind": "image",
+      "label": "f13",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 13,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i14",
+      "kind": "image",
+      "label": "f14",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 14,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i15",
+      "kind": "image",
+      "label": "f15",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 15,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i16",
+      "kind": "image",
+      "label": "f16",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 16,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i17",
+      "kind": "image",
+      "label": "f17",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 17,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i18",
+      "kind": "image",
+      "label": "f18",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 18,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i19",
+      "kind": "image",
+      "label": "f19",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 19,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i20",
+      "kind": "image",
+      "label": "f20",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 20,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i21",
+      "kind": "image",
+      "label": "f21",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 21,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i22",
+      "kind": "image",
+      "label": "f22",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 22,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i23",
+      "kind": "image",
+      "label": "f23",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 23,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i24",
+      "kind": "image",
+      "label": "f24",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 24,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     },
+     {
+      "id": "i25",
+      "kind": "image",
+      "label": "f25",
+      "sublabel": null,
+      "media": {
+       "type": "image",
+       "url": "/img.php?t=FIRMA",
+       "thumbUrl": "/img.php?t=FIRMA&thumb=1",
+       "uploadId": 25,
+       "videoId": null,
+       "startSeconds": null,
+       "endSeconds": null
+      }
+     }
+    ]
+   }
+  },
+  "plan": {
+   "leadIn": 15,
+   "minGap": 4,
+   "spreadOver": 55
+  }
+ }
+}

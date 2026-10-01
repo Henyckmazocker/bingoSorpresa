@@ -1,0 +1,81 @@
+# bingoSorpresa — stack de PRODUCCIÓN (frontend nginx estático + backend Apache + MySQL).
+# Arranque (NO antes de M6 del plan «Backoffice y Apertura Pública»: publicaría por el túnel un
+# backend con registro abierto sin rate limits ni backups):
+#   docker compose -p bingo_prod -f docker-compose.prod.yml up -d --build
+# El túnel resuelve el frontend por la red bingo_prod, ya declarada en cloudflare-tunnel/.
+# Ingress del tunnel (dashboard Cloudflare): bingo.dcahomelab.com -> http://bingo-frontend-prod:80
+# El frontend (nginx) proxya /api y /img.php al backend. MySQL no publica puerto al host.
+# Secretos por environment (${...} desde el .env raíz); NO se versionan.
+
+services:
+  frontend:
+    container_name: bingo-frontend-prod
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile.frontend.prod
+      args:
+        VUE_APP_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+    ports:
+      - "8098:80"          # prueba local; el tunnel entra por la red interna
+    depends_on:
+      - backend
+    networks:
+      - bingo_prod
+    restart: unless-stopped
+
+  backend:
+    container_name: bingo-backend-prod
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile.backend.prod
+    expose:
+      - "80"
+    volumes:
+      - bingo_uploads_prod:/var/www/html/storage/uploads
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_TIMEZONE=Europe/Madrid
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=bingo_db
+      - DB_USERNAME=bingo_user
+      - DB_PASSWORD=${DB_PASSWORD}
+      - LOG_PATH=/var/www/html/storage/logs
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - ALLOWED_EMAILS=${ALLOWED_EMAILS:-}
+      - STREAM_URL_TTL=43200
+    command: >
+      bash -c "mkdir -p storage/logs storage/sessions storage/uploads &&
+               chown -R www-data:www-data storage/ &&
+               chmod -R 775 storage/ &&
+               apache2-foreground"
+    depends_on:
+      - mysql
+    networks:
+      - bingo_prod
+    restart: unless-stopped
+
+  mysql:
+    container_name: bingo-mysql-prod
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: bingo_db
+      MYSQL_USER: bingo_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data_prod:/var/lib/mysql
+      - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - bingo_prod
+    restart: always
+
+networks:
+  bingo_prod:
+    name: bingo_prod
+
+volumes:
+  mysql_data_prod:
+  bingo_uploads_prod:

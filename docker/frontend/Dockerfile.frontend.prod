@@ -1,0 +1,39 @@
+# bingoSorpresa frontend (producción) — build estático servido por nginx.
+# Stage 1: build de la app Vue
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY frontend/package.json frontend/package-lock.json* ./
+
+RUN npm install --legacy-peer-deps
+
+COPY frontend/src ./src
+COPY frontend/public ./public
+COPY frontend/babel.config.js .
+COPY frontend/jsconfig.json .
+COPY frontend/vue.config.js .
+# Las VUE_APP_* de .env quedan embebidas en el JS servido — mismo trato que en el APK.
+COPY frontend/.env .
+
+# Cliente OAuth web de Google para el botón GIS de la portada (público, va en el bundle). Vacío →
+# la portada dice «Login no configurado». Llega desde docker-compose.prod.yml (GOOGLE_CLIENT_ID).
+ARG VUE_APP_GOOGLE_CLIENT_ID=
+ENV VUE_APP_GOOGLE_CLIENT_ID=$VUE_APP_GOOGLE_CLIENT_ID
+
+# Build web (NO mobile): publicPath '/' porque nginx sirve desde la raíz del dominio.
+# El APK se sigue generando aparte con `npm run build:mobile`.
+RUN npm run build
+
+# Stage 2: servir con nginx
+FROM nginx:1.25-alpine
+
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY docker/nginx/nginx.prod.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx/security-headers.conf /etc/nginx/security-headers.conf
+
+RUN chown -R nginx:nginx /usr/share/nginx/html && chmod -R 755 /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

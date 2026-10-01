@@ -1,0 +1,63 @@
+# Bingo Sorpresa — stack de DESARROLLO (solo backend + MySQL; no hay dev de frontend, ver plan).
+# Arranque:
+#   docker compose up -d --build
+# Backend  http://localhost:8895/index.php   (endpoint único; la acción va en el body JSON)
+# MySQL    localhost:3316                    (db bingo_db / user bingo_user)
+# Secretos desde el .env raíz (ver .env.example). Sin container_name: no chocan con bingo-*-prod.
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile.backend.dev
+    ports:
+      - "8895:80"
+    volumes:
+      - ./backend:/var/www/html
+      - backend_vendor:/var/www/html/vendor
+    environment:
+      - APP_ENV=development
+      - APP_DEBUG=true
+      - APP_TIMEZONE=Europe/Madrid
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=bingo_db
+      - DB_USERNAME=bingo_user
+      - DB_PASSWORD=${DB_PASSWORD}
+      - LOG_PATH=/var/www/html/storage/logs
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - ALLOWED_EMAILS=${ALLOWED_EMAILS:-}
+      - STREAM_URL_TTL=43200
+    command: >
+      bash -c "cd /var/www/html &&
+               export COMPOSER_MEMORY_LIMIT=-1 &&
+               composer install --optimize-autoloader --no-interaction &&
+               mkdir -p storage/logs storage/sessions storage/uploads &&
+               chown -R www-data:www-data storage/ &&
+               chmod -R 775 storage/ &&
+               apache2-foreground"
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    # performance_schema reserva ~220 MB al arrancar sin que nadie lo use en dev.
+    command:
+      - --performance-schema=OFF
+    ports:
+      - "3316:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: bingo_db
+      MYSQL_USER: bingo_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    restart: unless-stopped
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
+  backend_vendor:

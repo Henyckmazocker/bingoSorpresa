@@ -1,0 +1,49 @@
+# Bingo Sorpresa — backend PHP (desarrollo). El código se monta desde ./backend.
+FROM php:8.2-apache
+
+WORKDIR /var/www/html
+
+# El worker de Apache corre como uid/gid 1000 (= david en el host): el código y storage/ van
+# montados por bind-mount, y así lo que escribe el contenedor (logs, uploads) sigue siendo de david.
+RUN groupmod -g 1000 www-data && usermod -u 1000 www-data
+
+# Deps de sistema + extensiones PHP. GD con JPEG/PNG/WebP/GIF/FreeType para el reencodado de fotos
+# (ImageProcessor, M3) y exif para respetar la orientación de las fotos de móvil. pdo_mysql imprescindible.
+RUN apt-get update && apt-get install -y \
+        libzip-dev zip unzip \
+        libpng-dev libjpeg62-turbo-dev libwebp-dev libfreetype6-dev \
+        libonig-dev \
+        libxml2-dev \
+        git curl nano \
+    && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+    && docker-php-ext-install pdo pdo_mysql zip gd mbstring exif \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && rm -rf /var/lib/apt/lists/*
+
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Apache: rewrite/headers + servir desde public/
+RUN a2enmod rewrite headers
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
+    && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
+
+RUN mkdir -p /var/www/html/storage/logs \
+    && mkdir -p /var/www/html/storage/sessions \
+    && mkdir -p /var/www/html/storage/uploads \
+    && chown -R www-data:www-data /var/www/html
+
+# Mismos límites de subida que prod (ver «Detalles que se olvidan» del plan).
+RUN { \
+        echo "memory_limit = 256M"; \
+        echo "upload_max_filesize = 10M"; \
+        echo "post_max_size = 12M"; \
+    } > /usr/local/etc/php/conf.d/bingo-dev.ini
+
+EXPOSE 80
+
+ENV PHP_DISPLAY_ERRORS=On
+ENV PHP_ERROR_REPORTING=E_ALL
+
+CMD ["apache2-foreground"]
