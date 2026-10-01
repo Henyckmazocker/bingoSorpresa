@@ -25,7 +25,7 @@ services:
       - DB_USERNAME=bingo_user
       - DB_PASSWORD=${DB_PASSWORD}
       - LOG_PATH=/var/www/html/storage/logs
-      - JWT_SECRET=${JWT_SECRET}
+      - JWT_SECRET=${DEV_JWT_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - ALLOWED_EMAILS=${ALLOWED_EMAILS:-}
       - STREAM_URL_TTL=43200

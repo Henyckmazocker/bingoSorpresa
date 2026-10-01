@@ -28,6 +28,7 @@ class PairingServiceTest extends TestCase
                 expires_at DATETIME NOT NULL
             )'
         );
+        $this->db->exec('CREATE TABLE users (id INTEGER PRIMARY KEY, is_active INTEGER NOT NULL DEFAULT 1)');
         $this->service = new PairingService($this->db, fn (): int => $this->now);
     }
 
@@ -45,8 +46,15 @@ class PairingServiceTest extends TestCase
         $this->assertSame(gmdate('Y-m-d H:i:s', $this->now + 600), $row['expires_at']);
     }
 
+    private function addUser(int $id, int $isActive = 1): void
+    {
+        $this->db->prepare('INSERT INTO users (id, is_active) VALUES (:id, :a)')
+            ->execute(['id' => $id, 'a' => $isActive]);
+    }
+
     public function testEsperaHastaQueSeReclamaYLuegoEstaListo(): void
     {
+        $this->addUser(7);
         $p = $this->service->create();
         $this->assertSame(['bingoId' => null, 'ownerId' => null], $this->service->poll($p['deviceToken']));
 
@@ -58,6 +66,7 @@ class PairingServiceTest extends TestCase
 
     public function testNoSePuedeReclamarDosVeces(): void
     {
+        $this->addUser(7);
         $p = $this->service->create();
         $this->assertSame(PairingService::CLAIM_OK, $this->service->claim($p['code'], 42, 7));
         $this->assertSame(PairingService::CLAIM_TAKEN, $this->service->claim($p['code'], 43, 8));
@@ -79,6 +88,7 @@ class PairingServiceTest extends TestCase
 
     public function testReclamarAlFinalDaMargenParaElSondeo(): void
     {
+        $this->addUser(7);
         $p = $this->service->create();
         $this->now += 599;
         $this->assertSame(PairingService::CLAIM_OK, $this->service->claim($p['code'], 42, 7));
@@ -87,6 +97,33 @@ class PairingServiceTest extends TestCase
         $this->assertSame(['bingoId' => 42, 'ownerId' => 7], $this->service->poll($p['deviceToken']));
         $this->now += 1;
         $this->assertNull($this->service->poll($p['deviceToken']));
+    }
+
+    public function testDuenoActivoRecibeElBingo(): void
+    {
+        $this->addUser(7, 1);
+        $p = $this->service->create();
+        $this->service->claim($p['code'], 42, 7);
+
+        $this->assertSame(['bingoId' => 42, 'ownerId' => 7], $this->service->poll($p['deviceToken']));
+    }
+
+    public function testDuenoDeBajaDaComoCaducado(): void
+    {
+        $this->addUser(7, 0);
+        $p = $this->service->create();
+        $this->assertSame(PairingService::CLAIM_OK, $this->service->claim($p['code'], 42, 7));
+
+        // Sin pista de la baja: la tele lo ve como un código caducado (410) y pide otro.
+        $this->assertNull($this->service->poll($p['deviceToken']));
+    }
+
+    public function testSinReclamarEsperaAunqueNoHayaUsuarios(): void
+    {
+        $this->assertSame(0, (int) $this->db->query('SELECT COUNT(*) FROM users')->fetchColumn());
+        $p = $this->service->create();
+
+        $this->assertSame(['bingoId' => null, 'ownerId' => null], $this->service->poll($p['deviceToken']));
     }
 
     public function testCodigoOTokenDesconocidos(): void

@@ -105,6 +105,14 @@ describe('apiBingo.fromPayload', () => {
     expect(isGone({ status: 500 })).toBe(false);
     expect(isGone(null)).toBe(false);
   });
+
+  it('isGone: el 403 de CSRF_INVALID no es «ya no existe» (sesión caducada)', () => {
+    expect(isGone({ status: 403, response: { status: 'error', error_code: 'CSRF_INVALID' } })).toBe(false);
+  });
+
+  it('isGone: un 403 normal (con respuesta, sin error_code) sí lo es', () => {
+    expect(isGone({ status: 403, response: { status: 'error', message: 'No es tuyo' } })).toBe(true);
+  });
 });
 
 // La prueba que importa del plan (M4): reimprimir una tirada tras borrar una foto da los MISMOS

@@ -107,8 +107,11 @@ export function listPrints(bingoId) {
 
 /**
  * ¿El error es «este bingo ya no existe»? 404 (borrado, ajeno o compartido apagado) o 403.
- * Lo demás (red, 500, validación) se enseña con su mensaje.
+ * El 403 de CSRF (`error_code: 'CSRF_INVALID'`) no cuenta: es la sesión caducada y se enseña su
+ * mensaje. Lo demás (red, 500, validación) también se enseña con su mensaje.
  */
 export function isGone(err) {
-  return !!err && (err.status === 404 || err.status === 403);
+  if (!err) return false;
+  if (err.response && err.response.error_code === 'CSRF_INVALID') return false;
+  return err.status === 404 || err.status === 403;
 }

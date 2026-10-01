@@ -37,15 +37,9 @@ try {
     exit(2);
 }
 
-// Búsqueda por SQL y no con UserRepository::findByEmail, que hoy falla (llama a Email::toMasked,
-// que no existe). Lo demás va por el repositorio.
-$stmt = $container->get(PDO::class)->prepare('SELECT id FROM users WHERE email = :e');
-$stmt->execute(['e' => $email->toString()]);
-$userId = $stmt->fetchColumn();
-
 /** @var UserRepositoryInterface $users */
 $users = $container->get(UserRepositoryInterface::class);
-$user = $userId === false ? null : $users->findById((int) $userId);
+$user = $users->findByEmail($email);
 if ($user === null) {
     cli_fail("No hay ninguna cuenta con el email {$email->toString()}.");
 }

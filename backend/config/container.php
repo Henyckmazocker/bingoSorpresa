@@ -44,7 +44,6 @@ return function (): ContainerInterface {
         \App\Infrastructure\Middleware\AuthenticationMiddleware::class => DI\autowire(),
         \App\Infrastructure\Middleware\LoggingMiddleware::class => DI\autowire(),
         \App\Infrastructure\Middleware\CSRFMiddleware::class => DI\autowire(),
-        \App\Infrastructure\Middleware\ValidationMiddleware::class => DI\autowire(),
         \App\Infrastructure\Middleware\ShareTokenOrAuthMiddleware::class => DI\autowire(),
         // Rate limits (M6). Configurado por ruta (routes.php) con setConfig; una acción por petición.
         \App\Infrastructure\Middleware\RateLimitMiddleware::class => DI\autowire(),

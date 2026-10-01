@@ -271,7 +271,7 @@ class BingoController extends BaseController
         $itemId = $this->intParam($data, 'item_id');
         $item = $this->bingos->findItemOwned($itemId, $userId);
         if (!$item) {
-            return $this->errorResponse('Esta foto ya no existe.', 404);
+            return $this->errorResponse('Este elemento ya no existe.', 404);
         }
         $isMusic = $item['kind'] === 'music';
         $label = $this->text($data['label'] ?? null, self::ITEM_LABEL_MAX, $isMusic ? 'El título' : 'El texto de la foto');
@@ -304,7 +304,7 @@ class BingoController extends BaseController
             $item = $this->bingos->findItemOwned($itemId, $userId);
             if (!$item) {
                 $this->db->rollBack();
-                return $this->errorResponse('Esta foto ya no existe.', 404);
+                return $this->errorResponse('Este elemento ya no existe.', 404);
             }
             $this->bingos->deleteItem($itemId);
             $this->bingos->touch((int) $item['bingo_id']);

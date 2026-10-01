@@ -51,6 +51,14 @@ final class Email
         return $this->value;
     }
 
+    /**
+     * Obtiene una versión truncada para logs (GDPR-friendly): `d***@gmail.com`
+     */
+    public function toMasked(): string
+    {
+        return substr($this->getLocalPart(), 0, 1) . '***@' . $this->getDomain();
+    }
+
     public function __toString(): string
     {
         return $this->toString();

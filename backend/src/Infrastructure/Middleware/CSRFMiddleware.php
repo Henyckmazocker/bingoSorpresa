@@ -40,10 +40,12 @@ class CSRFMiddleware implements MiddlewareInterface
                 'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
             ]);
 
+            // http_code (no 'code'): Application solo lee ese; error_code lo distingue en el front.
             return [
-                'status' => 'error',
-                'message' => 'Invalid CSRF token. Please refresh and try again.',
-                'code' => 403
+                'status'     => 'error',
+                'message'    => 'La sesión ha caducado. Recarga la página.',
+                'http_code'  => 403,
+                'error_code' => 'CSRF_INVALID',
             ];
         }
 

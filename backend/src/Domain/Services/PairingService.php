@@ -76,13 +76,19 @@ class PairingService
     }
 
     /**
-     * Estado del pairing de este token: null si no existe o ha caducado (→ 410); si no,
-     * `['bingoId' => ?int, 'ownerId' => ?int]` (bingoId null = aún esperando).
+     * Estado del pairing de este token: null si no existe, ha caducado o su dueño está de baja
+     * (→ 410); si no, `['bingoId' => ?int, 'ownerId' => ?int]` (bingoId null = aún esperando).
      */
     public function poll(string $deviceToken): ?array
     {
+        // Una tele no debe recibir el bingo de una cuenta dada de baja (igual que `findShared`).
+        // LEFT JOIN: sin reclamar (`claimed_by IS NULL`) sigue esperando aunque no haya usuario.
         $stmt = $this->db->prepare(
-            'SELECT bingo_id, claimed_by FROM tv_pairings WHERE device_token_hash = :h AND expires_at > :now'
+            'SELECT p.bingo_id, p.claimed_by
+               FROM tv_pairings p
+               LEFT JOIN users u ON u.id = p.claimed_by
+              WHERE p.device_token_hash = :h AND p.expires_at > :now
+                AND (p.claimed_by IS NULL OR u.is_active = 1)'
         );
         $stmt->execute(['h' => self::hash($deviceToken), 'now' => self::datetime($this->now())]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);

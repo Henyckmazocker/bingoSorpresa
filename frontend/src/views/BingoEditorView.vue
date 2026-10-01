@@ -343,6 +343,11 @@ export default {
     this.load();
   },
   methods: {
+    /** El backend no sabe de qué tipo era un item que ya no existe (404); el editor sí. */
+    itemErrorMessage(e, item) {
+      if (e.status === 404) return item.kind === 'music' ? 'Esta canción ya no existe.' : 'Esta foto ya no existe.';
+      return e.message;
+    },
     async load() {
       this.loading = true;
       this.loadError = '';
@@ -448,7 +453,7 @@ export default {
         Object.assign(item, updated);
       } catch (e) {
         event.target.value = item.label;
-        this.itemError = e.message;
+        this.itemError = this.itemErrorMessage(e, item);
       }
     },
     async deleteItem() {
@@ -463,7 +468,7 @@ export default {
         this.dto.items = this.dto.items.filter((i) => i.id !== item.id);
         this.dto.storageBytes = storageBytes;
       } catch (e) {
-        this[errorKey] = e.message;
+        this[errorKey] = this.itemErrorMessage(e, item);
       }
     },
 
@@ -532,7 +537,7 @@ export default {
         revert(); // normaliza lo escrito («90» → «1:30»)
       } catch (e) {
         revert();
-        this.songError = e.message;
+        this.songError = this.itemErrorMessage(e, item);
       }
     }
   }

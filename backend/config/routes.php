@@ -15,7 +15,6 @@ use App\Infrastructure\Middleware\ShareTokenOrAuthMiddleware;
  *  - LoggingMiddleware: always.
  *  - AuthenticationMiddleware: injects user_id (session cookie or JWT bearer).
  *  - CSRFMiddleware: state-changing operations (skipped automatically for JWT auth).
- *  - ValidationMiddleware: required-field checks.
  *  - RateLimitMiddleware (M6): [RateLimitMiddleware::class, ['limit' => n, 'window' => s, 'by' => ip|user|device]].
  *    Los de 'user' van DESPUÉS de AuthenticationMiddleware (necesitan user_id); el de login, ANTES
  *    de verificar el token de Google (cuenta también los intentos fallidos). 429 + Retry-After.
