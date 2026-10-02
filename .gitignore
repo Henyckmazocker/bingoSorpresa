@@ -10,6 +10,7 @@ backend/storage/logs/*
 backend/storage/sessions/
 backend/.phpunit.cache/
 backend/var/
+docker/backup/backup.log
 
 # Firma de la APK: keystore y sus contraseñas. NUNCA al repo (quien los tenga puede publicar
 # actualizaciones de la app instalada). Guárdalos aparte, fuera de git.
